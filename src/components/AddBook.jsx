@@ -16,7 +16,7 @@ export default function AddBook(){
     const areaDescription = useRef(null)
 
     const dispatch = useDispatch();
-
+    const [errForm, setErrForm] = useState(true)
     const createNewBook = (event) => {
         event.preventDefault();
         const name = inputName.current.value;
@@ -42,9 +42,15 @@ export default function AddBook(){
         if(checkboxModernLiterature.current.checked){
             genre.push('Современная литература')
         }
-        const newBook = {name, author, published, descrip, genre}
+        if(name !== "" && author !== "" && published !== "" && genre.length !== 0){
+            const newBook = {name, author, published, descrip, genre}
         dispatch(addNewBook(newBook))
         setShow(false)
+        }  else setErrForm(false)
+
+        
+
+        console.log(genre)
     }
 
     const [show, setShow] = useState(false)
@@ -54,7 +60,7 @@ export default function AddBook(){
     ?
     <button onClick={()=>{setShow(true)}}>Добавить книгу</button>
     :
-
+        <div className="modal-contain" onClick={() => setShow(false)}>
         <div className="modal-window">
         <form onSubmit={createNewBook}>
         <h2>Добавление книги</h2>
@@ -112,9 +118,12 @@ export default function AddBook(){
         cols="50" rows="10"
         ref={areaDescription}
         ></textarea>
-        
+
         <button>Создать</button>
+        {!errForm &&
+        <p>Заполните все поля!</p>} 
     </form>
+</div>
 </div>
     }
 

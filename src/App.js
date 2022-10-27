@@ -10,7 +10,6 @@ function App() {
   return (
     <div>
       <h1>Библиотека</h1>
-      <AddBook/>
       <Routes>
         <Route
         path='/'
