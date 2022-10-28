@@ -17,12 +17,17 @@ export default function Books() {
             {item.img !== undefined &&
                 <img className='poster' src={item.img} alt="poster" />
             }
+            <div>
             <h2>{item.name}</h2>
             <p>Автор: {item.author}</p>
             <p>Дата издания: {item.published}</p>
             <p>Жанр: {item.genre}</p>
+            </div>
             </Link>
-            <button onClick={()=>{dispatch(likeCounter(item.id))}}>Like</button>{item.like}
+            {item.like}
+            <button onClick={()=>{dispatch(likeCounter(item.id))}}>Like</button>
+            
+            
         </div>)}
     </div>
     </>

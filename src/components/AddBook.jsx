@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch } from 'react-redux';
 import { addNewBook } from "../store";
+import poster from '../poster/def_book.jpg'
 
 export default function AddBook(){
     const inputName = useRef(null);
@@ -23,7 +24,10 @@ export default function AddBook(){
         const author = inpAuthor.current.value;
         const published = inpDate.current.value;
         const descrip = areaDescription.current.value;
-        const genre = []
+        const id = Date.now();
+        const genre = [];
+        const like = 0;
+        const img = poster;
         if(checkboxDetective.current.checked){
             genre.push('Детектив')
         }
@@ -43,22 +47,24 @@ export default function AddBook(){
             genre.push('Современная литература')
         }
         if(name !== "" && author !== "" && published !== "" && genre.length !== 0){
-            const newBook = {name, author, published, descrip, genre}
-        dispatch(addNewBook(newBook))
-        setShow(false)
-        }  else setErrForm(false)
+            const newBook = {name, author, published, descrip, genre, id, like, img}
+            dispatch(addNewBook(newBook))
+            setShow(true)
+        }  else setErrForm(false) 
 
         
 
         console.log(genre)
     }
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
     return <>
     {
-    !show 
+    show 
     ?
-    <button onClick={()=>{setShow(true)}}>Добавить книгу</button>
+    <button 
+    style={{'marginLeft': '30px'}}
+    onClick={()=>{setShow(false)}}>Добавить книгу</button>
     :
         <div className="modal-contain" onClick={() => setShow(false)}>
         <div className="modal-window">
