@@ -66,7 +66,7 @@ export default function AddBook(){
     style={{'marginLeft': '30px'}}
     onClick={()=>{setShow(false)}}>Добавить книгу</button>
     :
-        <div className="modal-contain" onClick={() => setShow(false)}>
+        <div className="modal-contain" onClick={() => setShow(true)}>
         <div className="modal-window">
         <form onSubmit={createNewBook}>
         <h2>Добавление книги</h2>
