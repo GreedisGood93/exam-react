@@ -8,6 +8,7 @@ export default function Books() {
     const books = useSelector(state => state.books);
     const dispatch = useDispatch();
     return <>
+    <h1>Библиотека</h1>
     <AddBook/>
         <div className='books-prevue'>
         {books.map((item, index) => <div 
